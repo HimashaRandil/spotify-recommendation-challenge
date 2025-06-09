@@ -29,8 +29,7 @@ The goal is to recommend tracks for 10,000 incomplete playlists across 10 differ
 ├── configs/                # Configuration files
 ├── tests/                  # Unit tests
 └── scripts/                # Utility scripts
-```# spotify-recommendation-challenge
-
+```
 
 ## Development Status
 
