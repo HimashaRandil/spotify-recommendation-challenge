@@ -1,0 +1,36 @@
+name: spotify-recommender
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core Python and system dependencies
+  - python=3.13.3
+  - pip
+  - uv
+  
+  # System libraries for database connections
+  - postgresql
+  - libpq
+  
+  # Scientific computing base (faster conda installs)
+  - numpy>=1.25.0
+  - pandas>=2.1.0
+  - scipy>=1.11.0
+  - scikit-learn>=1.3.0
+  
+  # Visualization
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+  
+  # Jupyter
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  
+  # Development tools
+  - git
+  - make
+  
+  # Install everything else via uv
+  - pip:
+    - uv

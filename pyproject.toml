@@ -1,0 +1,167 @@
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spotify-recommender"
+version = "0.1.0"
+description = "A comprehensive recommender system for Spotify playlists"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.13"
+authors = [
+    { name = "Himasha Randil", email = "himasharandil@gmail.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+# Core dependencies
+dependencies = [
+    "pandas>=2.1.0",
+    "numpy>=1.25.0",
+    "scikit-learn>=1.3.0",
+    "scipy>=1.11.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "jupyter>=1.0.0",
+    "ipykernel>=6.25.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+    "click>=8.1.0",
+    "tqdm>=4.66.0",
+    "joblib>=1.3.0",
+]
+
+
+[project.optional-dependencies]
+# Database dependencies
+postgresql = [
+    "psycopg2-binary>=2.9.7",
+    "sqlalchemy>=2.0.0",
+]
+
+snowflake = [
+    "snowflake-connector-python>=3.4.0",
+    "snowflake-sqlalchemy>=1.5.0",
+]
+
+neo4j = [
+    "neo4j>=5.13.0",
+    "py2neo>=2021.2.4",
+]
+
+# Development dependencies
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.4.0",
+]
+
+# Machine Learning extras
+ml = [
+    "lightgbm>=4.1.0",
+    "xgboost>=1.7.0",
+    "implicit>=0.7.0",
+    "surprise>=1.1.3",
+    "networkx>=3.1",
+    "node2vec>=0.4.6",
+]
+
+# All dependencies
+all = [
+    "spotify-recommender[postgresql,snowflake,neo4j,dev,ml]"
+]
+
+
+[project.urls]
+Homepage = "https://github.com/HimashaRandil/spotify-recommendation-challenge"
+Repository = "https://github.com/HimashaRandil/spotify-recommendation-challenge"
+Issues = "https://github.com/HimashaRandil/spotify-recommendation-challenge"
+
+
+
+[tool.uv]
+dev-dependencies = [
+    "jupyter>=1.0.0",
+    "ipykernel>=6.25.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py313']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=src --cov-report=html --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
