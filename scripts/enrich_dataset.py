@@ -6,8 +6,8 @@ Main script to enrich MPD dataset with Spotify audio features
 import os
 from dotenv import load_dotenv  # Add this import
 
-from src.data.extractors import extract_unique_tracks_from_mpd, save_track_data
-from src.data.spotify_client import SpotifyAudioFeatureCollector
+from src.dataETL.extractors import extract_unique_tracks_from_mpd, save_track_data
+from src.dataETL.spotify_client import SpotifyAudioFeatureCollector
 from src.utils.logger.logging import logger as logging
 
 
