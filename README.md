@@ -46,16 +46,19 @@ The goal is to recommend tracks for 10,000 incomplete playlists across 10 differ
 ## Approaches to Implement
 
 ### Phase 1: Baseline Models
+
 - Popularity-based recommendations
 - Co-occurrence analysis
 - Simple collaborative filtering
 
 ### Phase 2: Advanced Models
+
 - Matrix factorization
 - Content-based filtering
 - Deep learning embeddings
 
 ### Phase 3: Graph-Based Models
+
 - Neo4j graph algorithms
 - Node2Vec embeddings
 - Community detection
